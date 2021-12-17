@@ -3,6 +3,12 @@
 #include <time.h>
 #include <list>
 #include <iostream>
+
+
+
+
+
+
 using namespace sf;
 using namespace std;
 
@@ -22,5 +28,6 @@ public:
 	void interact(RenderWindow& app);
 	Menu();
 	~Menu();
+	
 
 };

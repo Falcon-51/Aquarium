@@ -2,6 +2,12 @@
 #include <time.h>
 #include <list>
 #include "Menu.h"
+#include "Animation.h"
+#include "Entity.h"
+#include "Enemy.h"
+#include "Player.h"
+
+
 
 Menu::Menu()
 {
@@ -14,8 +20,10 @@ Menu::~Menu()
 
 
 
+
 void Menu::interact(RenderWindow& app)
 {
+	srand(time(0));
 	app.setFramerateLimit(60);
 
 	Texture menuTexture1, menuTexture2, menuTexture3, aboutTexture, menuBackground;
@@ -87,9 +95,6 @@ void Menu::interact(RenderWindow& app)
 
 
 
-
-
-
 	//Title3 of menu
 	if (!font2.loadFromFile("Fonts/Gecko_Personal_Use_Only.ttf"))
 	{
@@ -140,6 +145,9 @@ void Menu::interact(RenderWindow& app)
 	{
 		if (menuNum == 1)
 		{
+			
+
+
 
 		}
 
@@ -159,22 +167,22 @@ void Menu::interact(RenderWindow& app)
 		{
 			app.close();
 		}
-
 	}
+	
 
 
-	app.draw(menuBg);
-	app.draw(menu1);
-	app.draw(menu2);
-	app.draw(menu3);
-	app.draw(menu);
-	app.draw(title1);
-	app.draw(title2);
-	app.draw(title3);
-	app.display();
+		app.draw(menuBg);
+		app.draw(menu1);
+		app.draw(menu2);
+		app.draw(menu3);
+		app.draw(menu);
+		app.draw(title1);
+		app.draw(title2);
+		app.draw(title3);
+		app.display();
 
 
-	////////////////////////////////////////////////////
 
+	
 }
 
