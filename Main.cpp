@@ -63,7 +63,7 @@ int main()
     Sprite background(t2);
 
     Animation sExplosion(t3, 0, 0, 256, 256, 24, 0.1);
-    Animation sExplosion_ship(t7, 0, 0, 180, 180, 24, 0.1);
+    Animation sExplosion_fish(t7, 0, 0, 180, 180, 24, 0.1);
 
     Animation sAngry1(t4, 0, 0, 75, 75, 1, 0);
     Animation sAngry2(t8, 0, 0, 75, 75, 1, 0);
@@ -190,7 +190,7 @@ int main()
                                 b->life = false;
 
                                 Entity* e = new Entity();
-                                e->settings(sExplosion_ship, a->x, a->y);
+                                e->settings(sExplosion_fish, a->x, a->y);
                                 e->name = "boom";
                                 entities.push_back(e);
 
@@ -207,7 +207,7 @@ int main()
                         if (a->name == "Player" && a->x < 0)
                         {
                             Entity* e = new Entity();
-                            e->settings(sExplosion_ship, a->x, a->y);
+                            e->settings(sExplosion_fish, a->x, a->y);
                             e->name = "boom";
                             entities.push_back(e);
                             P->settings(sPlayer, W / 2, H / 2, 0, 20);
