@@ -25,14 +25,14 @@
     <Filter Include="Исходные файлы\Entity">
       <UniqueIdentifier>{3a12c06b-918a-4765-ae54-b089cf1e5ff7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Player">
-      <UniqueIdentifier>{950f3646-b207-4f82-9cfd-6b3f3250f4c8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\Enemy">
       <UniqueIdentifier>{2d6535aa-b573-4b9c-8814-d0540c337ff1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Исходные файлы\Bubble">
       <UniqueIdentifier>{c57c7639-39a0-46c4-9576-1c569083cab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Player">
+      <UniqueIdentifier>{950f3646-b207-4f82-9cfd-6b3f3250f4c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

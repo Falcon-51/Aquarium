@@ -17,12 +17,33 @@ bool isCollide(Entity* a, Entity* b)
         (a->R + b->R) * (a->R + b->R);
 }
 
+
+
 int main()
 {
 	setlocale(0, "rus");
     RenderWindow app(VideoMode(W, H), "Aquarium", Style::Close | Style::Titlebar);
     srand(time(0));
     app.setFramerateLimit(60);
+    Menu menu;
+    Text Pause;
+    Font font;
+
+
+    //Pause
+    if (!font.loadFromFile("Fonts/Gecko_Personal_Use_Only.ttf"))
+    {
+        cout << "No fonts here";
+    }
+
+    Pause.setFont(font);
+    Pause.setFillColor(Color::Black);
+    Pause.setString("Pause");
+    Pause.setCharacterSize(60);
+    Pause.setPosition(W/2, H/2);
+    //End 
+
+
 
     Texture t1, t2, t3, t4, t5, t7, t8, t9;
     t1.loadFromFile("images/hero.png");
@@ -47,10 +68,10 @@ int main()
     Animation sAngry3(t9, 0, 0, 75, 75, 1, 0);
 
     Animation sBubble(t5, 0, 0, 20, 20, 1, 0);
-    
+
     Animation sPlayer(t1, 0, 0, 90, 90, 1, 0);
     Animation sPlayer_go(t1, 0, 0, 90, 90, 1, 0);
-    
+
 
 
     list<Entity*> entities;
@@ -79,157 +100,187 @@ int main()
     Player* P = new Player();
     P->settings(sPlayer, 200, 350, 0, 45);
     entities.push_back(P);
+    
 
-    /////main loop/////
-    while (app.isOpen())
+
+    while (app.isOpen()) //Пока окно открыто
     {
-        Event event;
-        while (app.pollEvent(event))
+        if ((IntRect(60, 200, 200, 80).contains(Mouse::getPosition(app))) && (Mouse::isButtonPressed(Mouse::Left)))
         {
-            if (event.type == Event::Closed)
-                app.close();
-
-            if (event.type == Event::KeyPressed)
-                if (event.key.code == Keyboard::Space)
+            while (app.isOpen())
+            {
+                Event event;
+                while (app.pollEvent(event))
                 {
-                    Bubble* B = new Bubble();
-                    B->settings(sBubble, P->x+20, P->y, P->angle, 10);
-                    entities.push_back(B);
+                    if (event.type == Event::Closed)
+                        app.close();
+
+                    if (event.type == Event::KeyPressed)
+                        if (event.key.code == Keyboard::Escape)
+                        {
+                            app.close();
+                        }
+                 
+                    if (event.type == Event::KeyReleased)
+                        if (event.key.code == Keyboard::Space)
+                        {
+                            Bubble* B = new Bubble();
+                            B->settings(sBubble, P->x + 20, P->y, P->angle, 10);
+                            entities.push_back(B);
+                        }
                 }
-        }
 
-        if (Keyboard::isKeyPressed(Keyboard::Right))
-        {
-            if (P->angle == 45)
-            {
-                P->angle += 0;
-            }
-            else
-            {
-                P->angle += 3;
-            }
-        }
+                if (Keyboard::isKeyPressed(Keyboard::Right))
+                {
+                    if (P->angle == 45)
+                    {
+                        P->angle += 0;
+                    }
+                    else
+                    {
+                        P->angle += 3;
+                    }
+                }
 
-        if (Keyboard::isKeyPressed(Keyboard::Left))
-        {
-            if (P->angle == -45)
-            {
-                P->angle += 0;
-            }
-            else
-            {
-                P->angle -= 3;
-            }
-        }
+                if (Keyboard::isKeyPressed(Keyboard::Left))
+                {
+                    if (P->angle == -45)
+                    {
+                        P->angle += 0;
+                    }
+                    else
+                    {
+                        P->angle -= 3;
+                    }
+                }
 
-        if (Keyboard::isKeyPressed(Keyboard::Up))
-        {
-            P->thrust = true;
+                if (Keyboard::isKeyPressed(Keyboard::Up))
+                {
+                    P->thrust = true;
 
+                }
+                else
+                {
+                    P->thrust = false;
+                    P->dx += -0.03;
+                }
+
+                for (auto a : entities)
+                    for (auto b : entities)
+                    {
+                        if (a->name == "Enemy" && b->name == "Bubble")
+                            if (isCollide(a, b))
+                            {
+                                a->life = false;
+                                b->life = false;
+
+                                Entity* e = new Entity();
+                                e->settings(sExplosion, a->x, a->y);
+                                e->name = "boom";
+                                entities.push_back(e);
+
+
+                            }
+
+                        if (a->name == "Player" && b->name == "Enemy")
+                            if (isCollide(a, b))
+                            {
+                                b->life = false;
+
+                                Entity* e = new Entity();
+                                e->settings(sExplosion_ship, a->x, a->y);
+                                e->name = "boom";
+                                entities.push_back(e);
+
+                                P->settings(sPlayer, W / 2, H / 2, 0, 20);
+                                P->dx = 0; P->dy = 0;
+                            }
+
+                        if (a->name == "Player" && a->x > W - 150)
+                        {
+
+                            P->dx -= 0.1;
+                        }
+
+                        if (a->name == "Player" && a->x < 0)
+                        {
+                            Entity* e = new Entity();
+                            e->settings(sExplosion_ship, a->x, a->y);
+                            e->name = "boom";
+                            entities.push_back(e);
+                            P->settings(sPlayer, W / 2, H / 2, 0, 20);
+                            P->dx = 0; P->dy = 0;
+                        }
+
+
+                        if (a->name == "Player" && a->y > H) a->y = 0;
+                        if (a->name == "Player" && a->y < 0) a->y = H;
+                    }
+
+
+                if (P->thrust)  P->anim = sPlayer_go;
+                else   P->anim = sPlayer;
+
+
+                for (auto e : entities)
+                    if (e->name == "boom")
+                        if (e->anim.isEnd()) e->life = 0;
+
+                if (rand() % 300 == 0)
+                {
+                    Enemy* A = new Enemy();
+                    A->settings(sAngry1, 0, rand() % H, 0, 25);
+                    entities.push_back(A);
+                }
+
+                if (rand() % 300 == 0)
+                {
+                    Enemy* A = new Enemy();
+                    A->settings(sAngry2, 0, rand() % H, 0, 25);
+                    entities.push_back(A);
+                }
+
+                if (rand() % 300 == 0)
+                {
+                    Enemy* A = new Enemy();
+                    A->settings(sAngry3, 0, rand() % H, 0, 25);
+                    entities.push_back(A);
+                }
+
+                for (auto i = entities.begin(); i != entities.end();)
+                {
+                    Entity* e = *i;
+
+                    e->update();
+                    e->anim.update();
+
+                    if (e->life == false) { i = entities.erase(i); delete e; }
+                    else i++;
+                }
+
+                //////draw//////
+                app.draw(background);
+                for (auto i : entities) i->draw(app);
+                app.display();
+
+            }
+
+           
         }
         else
         {
-            P->thrust = false;
-            P->dx += -0.03;
-        }
-
-        for (auto a : entities)
-            for (auto b : entities)
+            menu.interact(app);
+            Event event;
+            while (app.pollEvent(event))
             {
-                if (a->name == "Enemy" && b->name == "Bubble")
-                    if (isCollide(a, b))
-                    {
-                        a->life = false;
-                        b->life = false;
-
-                        Entity* e = new Entity();
-                        e->settings(sExplosion, a->x, a->y);
-                        e->name = "boom";
-                        entities.push_back(e);
-
-
-                    }
-
-                if (a->name == "Player" && b->name == "Enemy")
-                    if (isCollide(a, b))
-                    {
-                        b->life = false;
-
-                        Entity* e = new Entity();
-                        e->settings(sExplosion_ship, a->x, a->y);
-                        e->name = "boom";
-                        entities.push_back(e);
-
-                        P->settings(sPlayer, W / 2, H / 2, 0, 20);
-                        P->dx = 0; P->dy = 0;
-                    }
-
-                if (a->name == "Player" && a->x > W-150) 
-                {
-                   
-                    P->dx -= 0.1;
-                }
-
-                if (a->name == "Player" && a->x < 0)
-                {
-                    Entity* e = new Entity();
-                    e->settings(sExplosion_ship, a->x, a->y);
-                    e->name = "boom";
-                    entities.push_back(e);
-                    P->settings(sPlayer, W / 2, H / 2, 0, 20);
-                    P->dx = 0; P->dy = 0;
-                }
-
-
-                if (a->name == "Player" && a->y > H) a->y = 0;
-                if (a->name == "Player" && a->y < 0) a->y = H;
+                if (event.type == Event::Closed)
+                    app.close();
             }
 
-
-        if (P->thrust)  P->anim = sPlayer_go;
-        else   P->anim = sPlayer;
-
-
-        for (auto e : entities)
-            if (e->name == "boom")
-                if (e->anim.isEnd()) e->life = 0;
-
-        if (rand() % 300 == 0)
-        {
-            Enemy* A = new Enemy();
-            A->settings(sAngry1, 0, rand() % H, 0, 25);
-            entities.push_back(A);
         }
-
-        if (rand() % 300 == 0)
-        {
-            Enemy* A = new Enemy();
-            A->settings(sAngry2, 0, rand() % H, 0, 25);
-            entities.push_back(A);
-        }
-
-        if (rand() % 300 == 0)
-        {
-            Enemy* A = new Enemy();
-            A->settings(sAngry3, 0, rand() % H, 0, 25);
-            entities.push_back(A);
-        }
-
-        for (auto i = entities.begin(); i != entities.end();)
-        {
-            Entity* e = *i;
-
-            e->update();
-            e->anim.update();
-
-            if (e->life == false) { i = entities.erase(i); delete e; }
-            else i++;
-        }
-
-        //////draw//////
-        app.draw(background);
-        for (auto i : entities) i->draw(app);
-        app.display();
     }
+        
+        
+    
 	return 0;
 }
