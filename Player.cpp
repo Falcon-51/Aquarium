@@ -7,7 +7,7 @@ Player::Player()
 
 void Player::update()
 {
-    if (thrust)
+    if (flow)
     {
         dx += cos(angle * deg) * 0.3;
         dy += sin(angle * deg) * 0.3;
@@ -29,5 +29,4 @@ void Player::update()
     x += dx;
     y += dy;
 
-   
 }
