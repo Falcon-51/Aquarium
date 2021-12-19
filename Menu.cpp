@@ -128,18 +128,26 @@ void Menu::interact(RenderWindow& app)
 		menu1.setColor(Color::Blue);
 		menuNum = 1;
 	}
+	
+
 
 	if (IntRect(60, 300, 200, 80).contains(Mouse::getPosition(app)))
 	{
 		menu2.setColor(Color::Blue);
 		menuNum = 2;
 	}
+	
+
+
 
 	if (IntRect(60, 400, 200, 80).contains(Mouse::getPosition(app)))
 	{
 		menu3.setColor(Color::Blue);
 		menuNum = 3;
 	}
+	
+
+
 
 	if (Mouse::isButtonPressed(Mouse::Left))
 	{

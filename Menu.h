@@ -24,7 +24,6 @@ private:
 	Text menu, title1, title2, titleAbout, title3;
 
 public:
-
 	void interact(RenderWindow& app);
 	Menu();
 	~Menu();
