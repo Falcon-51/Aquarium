@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Main">
+      <UniqueIdentifier>{c50c104b-8e27-45f2-9ca5-05302f39c598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Menu">
+      <UniqueIdentifier>{6da131fd-6e47-4256-9667-0b0acc13823f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Animation">
+      <UniqueIdentifier>{fddd11bb-e5e5-420b-ba08-76802f972f7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Entity">
+      <UniqueIdentifier>{3a12c06b-918a-4765-ae54-b089cf1e5ff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Player">
+      <UniqueIdentifier>{950f3646-b207-4f82-9cfd-6b3f3250f4c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Enemy">
+      <UniqueIdentifier>{2d6535aa-b573-4b9c-8814-d0540c337ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Bubble">
+      <UniqueIdentifier>{c57c7639-39a0-46c4-9576-1c569083cab0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Исходные файлы\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Исходные файлы\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Исходные файлы\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Исходные файлы\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>Исходные файлы\Bubble</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Исходные файлы\Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Menu.h">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Исходные файлы\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Исходные файлы\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Исходные файлы\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>Исходные файлы\Bubble</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Исходные файлы\Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
