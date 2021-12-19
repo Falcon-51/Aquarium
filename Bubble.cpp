@@ -9,7 +9,6 @@ void Bubble::update()
 {
     dx = cos(angle * deg) * 4;
     dy = sin(angle * deg) * 4;
-    // angle+=rand()%7-3;  /*try this*/
     x += dx;
     y += dy;
 

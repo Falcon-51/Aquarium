@@ -11,11 +11,7 @@ public:
     Sprite sprite;
     vector<IntRect> frames;
 
-    Animation()
-    {
-
-    }
-
+    Animation(){}
     Animation(Texture& t, int x, int y, int w, int h, int count, float Speed);
     void update();
     bool isEnd();

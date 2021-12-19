@@ -6,6 +6,8 @@
 #include "Entity.h"
 #include "Enemy.h"
 #include "Player.h"
+#include <iostream>
+#include <sstream>
 
 using namespace sf;
 using namespace std;
@@ -26,21 +28,21 @@ int main()
     srand(time(0));
     app.setFramerateLimit(60);
     Menu menu;
-    Text Pause;
+    Text score;
     Font font;
+    int schet = 0;
 
 
-    //Pause
+    //Score
     if (!font.loadFromFile("Fonts/Gecko_Personal_Use_Only.ttf"))
     {
         cout << "No fonts here";
     }
 
-    Pause.setFont(font);
-    Pause.setFillColor(Color::Black);
-    Pause.setString("Pause");
-    Pause.setCharacterSize(60);
-    Pause.setPosition(W/2, H/2);
+    score.setFont(font);
+    score.setFillColor(Color::Black);
+    score.setCharacterSize(40);
+    score.setPosition(60, 20);
     //End 
 
 
@@ -103,7 +105,7 @@ int main()
     
 
 
-    while (app.isOpen()) //Пока окно открыто
+    while (app.isOpen()) 
     {
         if ((IntRect(60, 200, 200, 80).contains(Mouse::getPosition(app))) && (Mouse::isButtonPressed(Mouse::Left)))
         {
@@ -156,12 +158,12 @@ int main()
 
                 if (Keyboard::isKeyPressed(Keyboard::Up))
                 {
-                    P->thrust = true;
+                    P->flow = true;
 
                 }
                 else
                 {
-                    P->thrust = false;
+                    P->flow = false;
                     P->dx += -0.03;
                 }
 
@@ -178,8 +180,8 @@ int main()
                                 e->settings(sExplosion, a->x, a->y);
                                 e->name = "boom";
                                 entities.push_back(e);
-
-
+                                ++schet;
+                               
                             }
 
                         if (a->name == "Player" && b->name == "Enemy")
@@ -218,7 +220,7 @@ int main()
                     }
 
 
-                if (P->thrust)  P->anim = sPlayer_go;
+                if (P->flow)  P->anim = sPlayer_go;
                 else   P->anim = sPlayer;
 
 
@@ -257,10 +259,14 @@ int main()
                     if (e->life == false) { i = entities.erase(i); delete e; }
                     else i++;
                 }
+                app.clear();
 
-                //////draw//////
                 app.draw(background);
                 for (auto i : entities) i->draw(app);
+                ostringstream Score;
+                Score << schet;
+                score.setString("Score:" + Score.str());
+                app.draw(score);
                 app.display();
 
             }

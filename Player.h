@@ -5,11 +5,7 @@
 class Player : public Entity
 {
 public:
-    bool thrust;
-
+    bool flow;
     Player();
-   
     void update();
-   
-
 };
