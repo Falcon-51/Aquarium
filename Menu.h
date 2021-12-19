@@ -21,7 +21,7 @@ class Menu
 {
 private:
 	Font font, font2;
-	Text menu, title1, title2, titleAbout, title3;
+	Text menu, title1, title2;
 
 public:
 	void interact(RenderWindow& app);
