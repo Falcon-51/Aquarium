@@ -3,19 +3,11 @@
 #include <time.h>
 #include <list>
 #include <iostream>
-
-
-
-
-
-
 using namespace sf;
 using namespace std;
 
 const int W = 1200;
 const int H = 700;
-
-
 
 class Menu
 {
@@ -27,6 +19,4 @@ public:
 	void interact(RenderWindow& app);
 	Menu();
 	~Menu();
-	
-
 };
