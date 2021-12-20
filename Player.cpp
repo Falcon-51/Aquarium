@@ -28,5 +28,4 @@ void Player::update()
 
     x += dx;
     y += dy;
-
 }

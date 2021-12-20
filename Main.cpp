@@ -19,8 +19,6 @@ bool isCollide(Entity* a, Entity* b)
         (a->R + b->R) * (a->R + b->R);
 }
 
-
-
 int main()
 {
 	setlocale(0, "rus");
@@ -32,8 +30,6 @@ int main()
     Font font;
     int schet = 0;
 
-
-    //Score
     if (!font.loadFromFile("Fonts/Gecko_Personal_Use_Only.ttf"))
     {
         cout << "No fonts here";
@@ -43,9 +39,6 @@ int main()
     score.setFillColor(Color::Black);
     score.setCharacterSize(40);
     score.setPosition(60, 20);
-    //End 
-
-
 
     Texture t1, t2, t3, t4, t5, t7, t8, t9;
     t1.loadFromFile("images/hero.png");
@@ -74,8 +67,6 @@ int main()
     Animation sPlayer(t1, 0, 0, 90, 90, 1, 0);
     Animation sPlayer_go(t1, 0, 0, 90, 90, 1, 0);
 
-
-
     list<Entity*> entities;
 
     for (int i = 0; i < 3; i++)
@@ -103,8 +94,6 @@ int main()
     P->settings(sPlayer, 200, 350, 0, 45);
     entities.push_back(P);
     
-
-
     while (app.isOpen()) 
     {
         if ((IntRect(60, 200, 200, 80).contains(Mouse::getPosition(app))) && (Mouse::isButtonPressed(Mouse::Left)))
@@ -219,10 +208,8 @@ int main()
                         if (a->name == "Player" && a->y < 0) a->y = H;
                     }
 
-
                 if (P->flow)  P->anim = sPlayer_go;
                 else   P->anim = sPlayer;
-
 
                 for (auto e : entities)
                     if (e->name == "boom")
@@ -270,8 +257,6 @@ int main()
                 app.display();
 
             }
-
-           
         }
         else
         {
@@ -282,11 +267,7 @@ int main()
                 if (event.type == Event::Closed)
                     app.close();
             }
-
         }
     }
-        
-        
-    
 	return 0;
 }

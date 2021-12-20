@@ -7,19 +7,13 @@
 #include "Enemy.h"
 #include "Player.h"
 
-
-
 Menu::Menu()
 {
 }
 
-
 Menu::~Menu()
 {
 }
-
-
-
 
 void Menu::interact(RenderWindow& app)
 {
@@ -34,8 +28,6 @@ void Menu::interact(RenderWindow& app)
 	Sprite menu1(menuTexture1), menu2(menuTexture2), menuBg(menuBackground);
 	int menuNum = 0;
 
-
-	//Menu
 	if (!font.loadFromFile("Fonts/CricketInlineShaddow.ttf"))
 	{
 		cout << "No fonts here";
@@ -46,11 +38,7 @@ void Menu::interact(RenderWindow& app)
 	menu.setString("Menu");
 	menu.setCharacterSize(90);
 	menu.setPosition(60, 30);
-	//End 
 
-
-
-	//Title1 of menu
 	if (!font2.loadFromFile("Fonts/Gecko_Personal_Use_Only.ttf"))
 	{
 		cout << "No fonts here";
@@ -61,19 +49,12 @@ void Menu::interact(RenderWindow& app)
 	title1.setString("New game");
 	title1.setCharacterSize(30);
 	title1.setPosition(90, 210);
-	//End 
 
-
-	//Title2 of menu
 	if (!font2.loadFromFile("Fonts/Gecko_Personal_Use_Only.ttf"))
 	{
 		cout << "No fonts here";
 	}
 
-
-
-
-	//Title3 of menu
 	if (!font2.loadFromFile("Fonts/Gecko_Personal_Use_Only.ttf"))
 	{
 		cout << "No fonts here";
@@ -84,20 +65,15 @@ void Menu::interact(RenderWindow& app)
 	title2.setString("Exit");
 	title2.setCharacterSize(30);
 	title2.setPosition(130, 310);
-	//End 
-
 
 	menu1.setPosition(60, 200);
 	menu2.setPosition(60, 300);
 	menuBg.setPosition(0, 0);
 
-	//////////////////////////////лемч///////////////////
-
 	menu1.setColor(Color::White);
 	menu2.setColor(Color::White);
 	menuNum = 0;
 	app.clear();
-
 
 	if (IntRect(60, 200, 200, 80).contains(Mouse::getPosition(app)))
 	{
@@ -105,16 +81,11 @@ void Menu::interact(RenderWindow& app)
 		menuNum = 1;
 	}
 	
-
-
 	if (IntRect(60, 300, 200, 80).contains(Mouse::getPosition(app)))
 	{
 		menu2.setColor(Color::Blue);
 		menuNum = 2;
 	}
-	
-
-
 
 	if (Mouse::isButtonPressed(Mouse::Left))
 	{
@@ -124,16 +95,12 @@ void Menu::interact(RenderWindow& app)
 
 		}
 
-
-
 		if (menuNum == 2)
 		{
 			app.close();
 		}
 	}
 	
-
-
 		app.draw(menuBg);
 		app.draw(menu1);
 		app.draw(menu2);
@@ -141,9 +108,5 @@ void Menu::interact(RenderWindow& app)
 		app.draw(title1);
 		app.draw(title2);
 		app.display();
-
-
-
-	
 }
 
