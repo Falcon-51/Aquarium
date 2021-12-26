@@ -3,12 +3,16 @@
 #include <time.h>
 #include <list>
 #include <iostream>
+
+
 using namespace sf;
 using namespace std;
 
+//Значения ширины и высоты экрана приложения
 const int W = 1200;
 const int H = 700;
 
+//Класс, отвечающий за отображение игрового мен.
 class Menu
 {
 private:
@@ -19,4 +23,6 @@ public:
 	void interact(RenderWindow& app);
 	Menu();
 	~Menu();
+	
+
 };

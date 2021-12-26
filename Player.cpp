@@ -19,6 +19,7 @@ void Player::update()
     }
 
     int maxSpeed = 2;
+
     float speed = sqrt(dx * dx + dy * dy);
     if (speed > maxSpeed)
     {   
@@ -28,4 +29,5 @@ void Player::update()
 
     x += dx;
     y += dy;
+
 }

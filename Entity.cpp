@@ -23,4 +23,5 @@ void Entity::draw(RenderWindow& app)
     circle.setFillColor(Color(255, 0, 0, 170));
     circle.setPosition(x, y);
     circle.setOrigin(R, R);
+
 }
