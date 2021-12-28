@@ -232,26 +232,28 @@ int main()
                         if (e->anim.isEnd()) e->life = 0;
 
                 //Генерация новых врагов
-                if (rand() % 300 == 0)
+                if (entities.size() < 30)
                 {
-                    Enemy* A = new Enemy();
-                    A->settings(sAngry1, 0, rand() % H, 0, 30);
-                    entities.push_back(A);
+                    if (rand() % 300 == 0)
+                    {
+                        Enemy* A = new Enemy();
+                        A->settings(sAngry1, 0, rand() % H, 0, 30);
+                        entities.push_back(A);
+                    }
 
-                }
+                    if (rand() % 300 == 0)
+                    {
+                        Enemy* A = new Enemy();
+                        A->settings(sAngry2, 0, rand() % H, 0, 30);
+                        entities.push_back(A);
+                    }
 
-                if (rand() % 300 == 0)
-                {
-                    Enemy* A = new Enemy();
-                    A->settings(sAngry2, 0, rand() % H, 0, 30);
-                    entities.push_back(A);
-                }
-
-                if (rand() % 300 == 0)
-                {
-                    Enemy* A = new Enemy();
-                    A->settings(sAngry3, 0, rand() % H, 0, 30);
-                    entities.push_back(A);
+                    if (rand() % 300 == 0)
+                    {
+                        Enemy* A = new Enemy();
+                        A->settings(sAngry3, 0, rand() % H, 0, 30);
+                        entities.push_back(A);
+                    }
                 }
 
                 // Очистка памяти итератором
